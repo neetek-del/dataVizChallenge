@@ -124,57 +124,6 @@ Yes, Coors Field in Denver, Colorado, is famously affected by its high altitudeâ
 
 ```{python}
  
-import matplotlib.pyplot as plt
-import numpy as np
-
-# Extract Coors Field and other stadiums average runs
-coors_2010 = comparison_data.loc[comparison_data.home == "COL", "runs_2010"].values[0]
-coors_2021 = comparison_data.loc[comparison_data.home == "COL", "runs_2021"].values[0]
-other_2010 = comparison_data.loc[comparison_data.home != "COL", "runs_2010"].mean()
-other_2021 = comparison_data.loc[comparison_data.home != "COL", "runs_2021"].mean()
-
-# Data setup
-labels = ['2010', '2021']
-coors_runs = [coors_2010, coors_2021]
-other_runs = [other_2010, other_2021]
-
-x = np.arange(len(labels))
-width = 0.25
-
-fig, ax = plt.subplots(figsize=(8,6))
-
-# Slim, clean bars
-bars_coors = ax.bar(x - width/2, coors_runs, width, label='Coors Field (High Altitude)', color='#FF6F61', edgecolor='none')
-bars_others = ax.bar(x + width/2, other_runs, width, label='Other Stadiums', color='#90A4AE', edgecolor='none')
-
-# Labels and titles
-ax.set_ylabel('Average Runs per Game', fontsize=12)
-ax.set_xticks(x)
-ax.set_xticklabels(labels, fontsize=12)
-ax.set_title('High Altitude Effect on MLB Run-Scoring\nCoors Field vs Other Stadiums', fontsize=16, fontweight='bold', pad=15)
-
-# Add subtle grid
-ax.yaxis.grid(True, linestyle='--', alpha=0.4)
-
-# Annotate Coors Field bars
-for bar in bars_coors:
-    height = bar.get_height()
-    ax.annotate(f'{height:.2f}',
-                xy=(bar.get_x() + bar.get_width()/2, height),
-                xytext=(0, 5), textcoords='offset points',
-                ha='center', va='bottom', fontsize=11, fontweight='bold', color='#FF6F61')
-
-# Add comparison arrows
-ax.annotate('Higher runs due to altitude',
-            xy=(0, coors_2010), xytext=(-0.25, coors_2010 + 1.2),
-            arrowprops=dict(arrowstyle='->', color='#FF6F61', lw=2),
-            fontsize=10, fontweight='bold', color='#FF6F61')
-
-ax.legend(frameon=False, fontsize=11)
-
-plt.tight_layout()
-plt.show()
-
 ```
 
 

@@ -356,7 +356,6 @@ Conveys categorical distinctions or highlights specific data points but lacks pr
 Let's create a publication-ready visualization:
 
 ```{python}
-#| label: stage-4-formatting
 #| echo: true
 
 # Stage 4: Formatting for Your Audience

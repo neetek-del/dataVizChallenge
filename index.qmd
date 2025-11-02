@@ -537,7 +537,7 @@ print(f"Colorado is {((colorado_runs / avgDF_2010_sorted.totalRuns.mean()) - 1) 
 Let's create a comprehensive comparison between 2010 and 2021:
 
 ```{python}
-#| label: advanced-oo-techniques
+#| label: advanced-oo-technique
 #| echo: true
 
 # Advanced Object-Oriented Techniques

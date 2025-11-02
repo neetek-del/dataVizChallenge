@@ -210,11 +210,70 @@ plt.show()
 
 **Question 1: Geometry Choices**
 - Why is a horizontal bar chart better than a scatter plot for this data?
+
+Answer:
+
+A horizontal bar chart is better than a scatter plot in this case because:
+
+- Categorical axis clarity:
+The stadium names (e.g., “COL”, “BOS”, “LAD”) are categorical variables, not continuous numbers. Bar charts are designed for discrete categories, while scatter plots work best for numeric or continuous data.
+
+Ease of comparison:
+In a horizontal bar chart, it’s easy to compare the lengths of bars side by side. This helps us immediately see which stadiums have higher average runs.
+
+- Label readability:
+Horizontal layouts make text labels (stadium abbreviations) easier to read, especially when there are many categories. Scatter plots with categorical axes tend to look cluttered and labels can overlap.
+
+- Perceptual accuracy:
+Human vision compares lengths along a common scale more accurately than comparing positions of scattered points. This improves data comprehension.
+
+
 - When would you choose a vertical bar chart over horizontal?
+
+Answer:
+
+A vertical bar chart is preferable under several conditions:
+
+-Fewer categories:
+When the dataset includes a limited number of categories, x-axis labels remain legible in a vertical format.
+
+- Ordered or temporal data:
+When the data represent time periods or sequences (e.g., months, seasons), a left-to-right layout reflects the natural progression of time.
+
+- Audience expectations:
+Viewers often associate temporal or ranked data with a horizontal x-axis progression.
+
+- Spatial considerations:
+Vertical bar charts may be more suitable when the available visual space is constrained vertically.
 
 **Question 2: Aesthetic Mappings**
 - What does the color highlighting accomplish in Approach 4?
+
+Answer:
+
+The use of color highlighting—assigning “darkorchid” to Colorado and “lightgrey” to other stadiums—serves as a visual emphasis tool that directs the viewer’s attention toward the focal point of the analysis.
+
+In this visualization, the narrative centers on Coors Field (COL) and its reputation as a “run-friendly” ballpark. The application of distinct coloring:
+
+- Draws immediate attention to the Colorado bar.
+
+- Reinforces the analytical narrative by distinguishing the key observation from contextual data.
+
+- Enhances contrast and cognitive focus for the intended audience.
+
+
 - How does position (x/y) compare to color for encoding data?
+
+Answer:
+
+Position (x/y) serves as the most precise and effective encoding channel for quantitative data, while color functions primarily as a tool for emphasis or categorization.
+
+- Position:
+Enables accurate quantitative comparison through consistent spatial alignment along a common scale.
+
+- Color:
+Conveys categorical distinctions or highlights specific data points but lacks precision for representing exact values.
+
 
 :::
 

@@ -572,78 +572,78 @@ Answer :
 #| label: advanced-oo-techniques
 #| echo: true
 
-# Advanced Object-Oriented Techniques
+import matplotlib.pyplot as plt
+import pandas as pd
 
+# Advanced Object-Oriented Techniques
 # Create a comprehensive comparison visualization
 
 # Prepare data for comparison
-
 comparison_data = pd.merge(
-avgDF_2010[['home', 'totalRuns']].rename(columns={'totalRuns': 'runs_2010'}),
-avgDF_2021[['home', 'totalRuns']].rename(columns={'totalRuns': 'runs_2021'}),
-on='home', how='inner'
+    avgDF_2010[['home', 'totalRuns']].rename(columns={'totalRuns': 'runs_2010'}),
+    avgDF_2021[['home', 'totalRuns']].rename(columns={'totalRuns': 'runs_2021'}),
+    on='home', how='inner'
 )
 
 # Sort by 2010 values for consistent ordering
-
 comparison_data = comparison_data.sort_values('runs_2010', ascending=True)
 
 # Create subplot layout (2 facets: 2010 and 2021)
-
-fig, axes = plt.subplots(1, 2, figsize=(14, 7), sharey=True)
+fig, axes = plt.subplots(1, 2, figsize=(9, 6), sharey=True)
 
 # Define color scheme with Colorado highlighted
-
 colorado_colors_2010 = ["darkorchid" if team == "COL" else "lightgrey" for team in comparison_data.home]
 colorado_colors_2021 = ["darkorchid" if team == "COL" else "lightgrey" for team in comparison_data.home]
 
 # --- Left subplot: 2010 ---
-
 axes[0].barh(comparison_data.home, comparison_data.runs_2010, color=colorado_colors_2010)
-axes[0].set_title("Average Runs per Game (2010 Season)", fontsize=14, fontweight='bold')
-axes[0].set_xlabel("Average Runs per Game", fontsize=12)
-axes[0].set_ylabel("Stadium (Home Team)", fontsize=12)
+axes[0].set_title("Average Runs per Game (2010 Season)", fontsize=12, fontweight='bold')
+axes[0].set_xlabel("Average Runs per Game", fontsize=10)
+axes[0].set_ylabel("Stadium (Home Team)", fontsize=10)
 axes[0].grid(True, alpha=0.3)
 
 # Annotate Colorado
-
 col_index_2010 = comparison_data[comparison_data.home == "COL"].index[0]
 col_value_2010 = comparison_data.loc[col_index_2010, "runs_2010"]
 axes[0].annotate(f"COL: {col_value_2010:.2f}",
-xy=(col_value_2010, col_index_2010),
-xytext=(col_value_2010, col_index_2010 + 0.6),
-arrowprops=dict(arrowstyle='->', color='darkorchid', lw=2),
-fontsize=9, fontweight='bold', color='darkorchid',
-bbox=dict(facecolor='white', alpha=0.7, edgecolor='none'))
+                 xy=(col_value_2010, col_index_2010),
+                 xytext=(col_value_2010 + 0.1, col_index_2010 + 0.5),
+                 arrowprops=dict(arrowstyle='->', color='darkorchid', lw=2),
+                 fontsize=8, fontweight='bold', color='darkorchid',
+                 bbox=dict(facecolor='white', alpha=0.7, edgecolor='none'))
 
 # --- Right subplot: 2021 ---
-
 axes[1].barh(comparison_data.home, comparison_data.runs_2021, color=colorado_colors_2021)
-axes[1].set_title("Average Runs per Game (2021 Season)", fontsize=14, fontweight='bold')
-axes[1].set_xlabel("Average Runs per Game", fontsize=12)
+axes[1].set_title("Average Runs per Game (2021 Season)", fontsize=12, fontweight='bold')
+axes[1].set_xlabel("Average Runs per Game", fontsize=10)
 axes[1].grid(True, alpha=0.3)
 
 # Annotate Colorado
-
 col_index_2021 = comparison_data[comparison_data.home == "COL"].index[0]
 col_value_2021 = comparison_data.loc[col_index_2021, "runs_2021"]
 axes[1].annotate(f"COL: {col_value_2021:.2f}",
-xy=(col_value_2021, col_index_2021),
-xytext=(col_value_2021, col_index_2021 + 0.6),
-arrowprops=dict(arrowstyle='->', color='darkorchid', lw=2),
-fontsize=9, fontweight='bold', color='darkorchid',
-bbox=dict(facecolor='white', alpha=0.7, edgecolor='none'))
+                 xy=(col_value_2021, col_index_2021),
+                 xytext=(col_value_2021 + 0.1, col_index_2021 + 0.5),
+                 arrowprops=dict(arrowstyle='->', color='darkorchid', lw=2),
+                 fontsize=8, fontweight='bold', color='darkorchid',
+                 bbox=dict(facecolor='white', alpha=0.7, edgecolor='none'))
 
 # Add shared title and legend
-
 fig.suptitle("Comparison of Run-Friendliness Across MLB Stadiums (2010 vs. 2021)",
-fontsize=16, fontweight='bold', y=1.02)
+             fontsize=14, fontweight='bold', y=1.03)
+
+# Add legend *below* the plots (so it doesn’t overlap)
 colorado_patch = plt.Rectangle((0, 0), 1, 1, color="darkorchid", label="Colorado Rockies (COL)")
 other_patch = plt.Rectangle((0, 0), 1, 1, color="lightgrey", label="Other Stadiums")
-fig.legend(handles=[colorado_patch, other_patch], loc='lower center', ncol=2, frameon=True)
+fig.legend(handles=[colorado_patch, other_patch],
+           loc='lower center', ncol=2, frameon=True, fontsize=9)
 
-plt.tight_layout()
+# Adjust layout to make space for legend
+plt.tight_layout(rect=[0, 0.05, 1, 0.97])
+plt.subplots_adjust(bottom=0.12)
+
 plt.show()
+
 
 ```
 

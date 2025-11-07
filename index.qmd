@@ -183,21 +183,24 @@ avg_runs_2021 = avgDF_2021.set_index('home')['totalRuns'].sort_index()
 
 stadiums = avg_runs_2010.index  # Sorted stadium list (should be same in both)
 
-fig, ax1 = plt.subplots(figsize=(16,8))
+# Smaller figure to fit without scrolling
+fig, ax1 = plt.subplots(figsize=(9,4))
 
 # Bar widths and positions
 bar_width = 0.35
 x = range(len(stadiums))
 
 # Use lighter pastel colors for bars
-bars_2010 = ax1.bar([i - bar_width/2 for i in x], games_2010, width=bar_width, label='2010 Games', alpha=0.5, color='#9e9ac8')
-bars_2021 = ax1.bar([i + bar_width/2 for i in x], games_2021, width=bar_width, label='2021 Games', alpha=0.5, color='#fdae6b')
+bars_2010 = ax1.bar([i - bar_width/2 for i in x], games_2010, width=bar_width, 
+                    label='2010 Games', alpha=0.6, color='#9e9ac8')
+bars_2021 = ax1.bar([i + bar_width/2 for i in x], games_2021, width=bar_width, 
+                    label='2021 Games', alpha=0.6, color='#fdae6b')
 
-ax1.set_xlabel('Stadium', fontsize=12)
-ax1.set_ylabel('Number of Games', fontsize=12, color='#333')
+ax1.set_xlabel('Stadium', fontsize=9)
+ax1.set_ylabel('Number of Games', fontsize=9, color='#333')
 ax1.set_xticks(x)
-ax1.set_xticklabels(stadiums, rotation=45, ha='right', fontsize=10)
-ax1.tick_params(axis='y', labelcolor='#333')
+ax1.set_xticklabels(stadiums, rotation=30, ha='right', fontsize=7)
+ax1.tick_params(axis='y', labelcolor='#333', labelsize=8)
 
 # Remove gridlines for a cleaner look
 ax1.grid(False)
@@ -205,21 +208,25 @@ ax1.grid(False)
 # Create second y-axis for average runs per game
 ax2 = ax1.twinx()
 
-line_2010, = ax2.plot(x, avg_runs_2010, label='2010 Avg Runs/Game', color='#6a51a3', marker='o', linewidth=2)
-line_2021, = ax2.plot(x, avg_runs_2021, label='2021 Avg Runs/Game', color='#e6550d', marker='o', linewidth=2)
+line_2010, = ax2.plot(x, avg_runs_2010, label='2010 Avg Runs/Game', 
+                      color='#6a51a3', marker='o', linewidth=1.5, markersize=4)
+line_2021, = ax2.plot(x, avg_runs_2021, label='2021 Avg Runs/Game', 
+                      color='#e6550d', marker='o', linewidth=1.5, markersize=4)
 
-ax2.set_ylabel('Average Runs per Game', fontsize=12, color='#333')
-ax2.tick_params(axis='y', labelcolor='#333')
+ax2.set_ylabel('Avg Runs/Game', fontsize=9, color='#333')
+ax2.tick_params(axis='y', labelcolor='#333', labelsize=8)
 
 # Title and legend
-fig.suptitle('Games Played per Stadium and Average Runs per Game (2010 vs 2021)', fontsize=16, fontweight='bold')
+fig.suptitle('Games per Stadium & Avg Runs/Game (2010 vs 2021)', fontsize=11, fontweight='bold')
 
-# Combine legends from both axes, place outside plot area
+# Combine legends from both axes
 lines = [bars_2010, bars_2021, line_2010, line_2021]
 labels = [l.get_label() for l in lines]
-ax1.legend(lines, labels, loc='upper left', bbox_to_anchor=(1.05, 1), borderaxespad=0.)
+ax1.legend(lines, labels, loc='upper center', bbox_to_anchor=(0.5, -0.2),
+            ncol=2, fontsize=8, frameon=False)
 
-plt.tight_layout(rect=[0, 0, 0.85, 0.95])
+# Tight layout to minimize whitespace
+plt.tight_layout(rect=[0, 0, 1, 0.9], pad=0.8)
 plt.show()
 
 ```

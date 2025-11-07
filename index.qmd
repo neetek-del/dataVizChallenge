@@ -720,7 +720,7 @@ colors_2021 = [highlight_color if team=="COL" else accent_color for team in comp
 
 # Stage 1: Raw data overview - scatter plots for context
 
-fig, axes = plt.subplots(2, 2, figsize=(16, 12), sharey=True)
+fig, axes = plt.subplots(2, 2, figsize=(9, 8), sharey=True)
 fig.suptitle("MLB Stadium Run-Friendliness: 2010 vs 2021", fontsize=20, fontweight='bold')
 
 # Stage 1: Raw data scatter
